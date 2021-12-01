@@ -2,9 +2,7 @@ import os
 if os.name != "posix" or os.getuid():
     print("[!]Your system does not meet the standard requirements for this tool to run.\n[*]Try to to run this on unix based system with sudo.")
     exit(1)
-from scapy.all import ICMP, ARP, IP, UDP, TCP, Ether, RandShort, RandIP
-from threading import Thread
-import socket
+
 
 logo = """_________          _______    _______  _______  _______  _______  _______  _______  _______           _______  _______ 
 \__   __/|\     /|(  ____ \  (  ____ )(  ____ \(  ____ \(  ____ \(  ___  )(  ____ )(  ____ \|\     /|(  ____ \(  ____ )
@@ -23,7 +21,7 @@ menu = """
    3.packet sniffing    4.port scanner
    5.MITHM\t\t6.netcat
    7.proxy server\t8.change MAC address
-   9.dos
+   9.dos\t\t10.virus integrated through github
    
    99.Exit
    
@@ -34,6 +32,11 @@ class MainFunctions:
         option = int(input(logo + menu))
 
         if option == 1:
+            from NetworkingStuff import Ddos
 
 
-Main = MainFunctions()
+
+
+
+if __name__ == "__main__":
+    Main = MainFunctions()
