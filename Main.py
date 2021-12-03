@@ -33,6 +33,7 @@ class MainFunctions:
 
         if option == 1:
             from NetworkingStuff import Ddos
+            Ddos().dos()
 
 
 
