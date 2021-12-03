@@ -2,6 +2,9 @@ import os
 if os.name != "posix" or os.getuid():
     print("[!]Your system does not meet the standard requirements for this tool to run.\n[*]Try to to run this on unix based system with sudo.")
     exit(1)
+from src import AndroidControlTool
+from src import MlwareAndNetcat
+from src import NetworkingStuff
 
 
 logo = """_________          _______    _______  _______  _______  _______  _______  _______  _______           _______  _______ 
@@ -32,8 +35,7 @@ class MainFunctions:
         option = int(input(logo + menu))
 
         if option == 1:
-            from NetworkingStuff import Ddos
-            Ddos().dos()
+            NetworkingStuff.Ddos().dos()
 
 
 
