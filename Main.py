@@ -34,7 +34,7 @@ class MainFunctions:
     def __init__(self):
         option = int(input(logo + menu))
 
-        if option == 1:
+        if option == 9:
             NetworkingStuff.Ddos().dos()
 
 
