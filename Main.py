@@ -1,10 +1,10 @@
 import os
+
 if os.name != "posix" or os.getuid():
-    print("[!]Your system does not meet the standard requirements for this tool to run.\n[*]Try to to run this on unix based system with sudo.")
+    print(
+        "[!]Your system does not meet the standard requirements for this tool to run.\n[*]Try to to run this on unix based system with sudo.")
     exit(1)
 from src import AndroidControlTool, MlwareAndNetcat, NetworkingStuff
-
-
 
 logo = """_________          _______    _______  _______  _______  _______  _______  _______  _______           _______  _______ 
 \__   __/|\     /|(  ____ \  (  ____ )(  ____ \(  ____ \(  ____ \(  ___  )(  ____ )(  ____ \|\     /|(  ____ \(  ____ )
@@ -29,15 +29,20 @@ menu = """
    
    [*]Enter the number of one of the following options: """
 
+
 class MainFunctions:
     def __init__(self):
         option = int(input(logo + menu))
 
-        if option == 9:
+        if option == 1:
+            mode = input("\n\n   [*]server or client: ")
+            if mode == "server":
+                NetworkingStuff.Ddos().StartServer()
+            elif mode == "client":
+                TargetIp = input("[*]Target ip: ")
+                NetworkingStuff.Ddos().ClientMode(TargetIp)
+        elif option == 9:
             NetworkingStuff.Ddos().dos()
-
-
-
 
 
 if __name__ == "__main__":

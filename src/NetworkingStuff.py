@@ -35,5 +35,9 @@ class Ddos:
     def OnClientJoin(self, client: socket.socket):
         pass
 
+    def ClientMode(self, ip: str):
+        pass
+
+
     def dos(self):
         send(self.packet, loop=1, verbose=1)
