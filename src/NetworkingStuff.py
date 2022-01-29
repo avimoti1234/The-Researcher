@@ -50,6 +50,6 @@ class Ddos:
     def dos(self):
         send(self.packet, loop=1, verbose=1)
 
-    def __SpamDos__(self, massge):
+    def __SpamDos(self, massge):
         while massge != "end":
             send(self.packet, verbose=False, loop=False)
