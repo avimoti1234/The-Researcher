@@ -37,6 +37,14 @@ class Ddos:
 
     def ClientMode(self, ip: str, port: int):
         self.sock.connect((ip, port))
+        buffer = b'1'
+
+        while buffer != b'':
+            buffer = self.sock.recv(4096)
+
+            if buffer == b"bye":
+                break
+        self.sock.close()
 
 
     def dos(self):
