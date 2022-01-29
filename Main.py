@@ -37,8 +37,10 @@ class MainFunctions:
             if mode == "server":
                 NetworkingStuff.Ddos().StartServer()
             elif mode == "client":
-                TargetIp = input("[*]Target ip: ")
-                NetworkingStuff.Ddos().ClientMode(TargetIp)
+                TargetIp = input("\n\n   [*]Target ip: ")
+                PortNumber = int(input("\n\n   [*]Trget port number: "))
+
+                NetworkingStuff.Ddos().ClientMode(TargetIp, PortNumber)
         elif option == 9:
             NetworkingStuff.Ddos().dos()
 
