@@ -1,5 +1,5 @@
 os
-scapy.all
+scapy.all[complete]
 threading
 socket
 subprocess
