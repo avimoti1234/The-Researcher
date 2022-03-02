@@ -1,3 +1,5 @@
 .idea/
 ideas-for-menu-options
 src/__pycache__/
+.dist/
+venv/
