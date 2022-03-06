@@ -22,7 +22,7 @@ class Ddos:
 
         self.sock.bind((Ip, Port))
 
-        NumOfPeople = int(input("\n   [*]max number of members to join: \n"))
+        NumOfPeople = int(input("\n   [*]max number of members to join: "))
 
         self.sock.listen(NumOfPeople)
 
