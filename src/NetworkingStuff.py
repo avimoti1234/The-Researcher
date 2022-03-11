@@ -58,7 +58,7 @@ class Ddos:
             elif Input == "-h" or Input == "--help":
                 DisplayHelpMenu()
             else:
-                for i in range(len(self.members) - 1):
+                for i in range(len(self.members)):
                     self.members[i].send(Input.encode())
         self.Join = False
         print(122)
@@ -69,10 +69,13 @@ class Ddos:
             send()
 
     def _JoinParty(self):
+        print("hi")
         self.members = []
         while self.Join:
-            client, addr = self.sock.accept()
-            self.members.append(client)
+            print("hi1")
+            #client, addr = self.sock.accept()
+            self.members.append(self.sock.accept()[0])
+            print("hi2")
             print(self.Join)
 
-        print(12)
+
