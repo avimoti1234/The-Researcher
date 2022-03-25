@@ -1,7 +1,7 @@
 import os
 if os.name != "posix" or os.getuid():
     print("[!]Your system does not meet the standard requirements for this tool to run.\n[*]Try to to run this on unix based system with sudo.")
-    exit(1)
+    exit(-1)
 from src import AndroidControlTool, MlwareAndNetcat, NetworkingStuff
 
 logo = """_________          _______    _______  _______  _______  _______  _______  _______  _______           _______  _______ 
@@ -36,6 +36,8 @@ class MainFunctions:
             NetworkingStuff.Ddos()
         elif option == 9:
             NetworkingStuff.Ddos().dos()
+        elif option == 99:
+            exit(1)
 
 
 if __name__ == "__main__":
