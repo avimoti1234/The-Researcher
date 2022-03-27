@@ -10,11 +10,11 @@ def DisplayHelpMenu():
     options:
     
     
-    -p --protocol      \tspecify protocol to use
-    -f --flags         \tspecify flags in the packet header of the protocol you chose
-    -port              \tspecify port number for the attack
+    -p --protocol                \tspecify protocol to use
+    -f --flags                   \tspecify flags in the packet header of the protocol you chose
+    -port                        \tspecify port number for the attack
         1. -port/(nothing)       \tif -port set to nothing the port will be set to default
-        2. -port random\tif -port set to random the attack will use random port to attack
+        2. -port random          \tif -port set to random the attack will use random port to attack
     """
     print(HelpMenu)
 
@@ -54,16 +54,16 @@ class Ddos:
         Input = ""
         while Input != "exit\n":
             Input = input("   host@command>") + '\n'
-            if Input == "start attack":
+            if Input == "start attack\n":
                 self.Attack = True
                 self.AttackTarget()
-            elif Input == "stop attack":
+            elif Input == "stop attack\n":
                 self.Attack = False
-            elif Input == "stop join":
+            elif Input == "stop join\n":
                 self.Join = False
-            elif Input == "resume join":
+            elif Input == "resume join\n":
                 self.Join = True
-            elif Input == "-h" or Input == "--help":
+            elif Input == "-help\n":
                 DisplayHelpMenu()
             else:
                 for i in range(len(self.members)):
