@@ -71,10 +71,8 @@ class Ddos:
         self.Join = False
         thrd.join()
 
-
-
     def AttackTarget(self):
-        print("nigger")
+        print("in attack function")
         while self.Attack:
             send()
 
