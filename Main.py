@@ -13,7 +13,7 @@ class MainFunctions:
         if option == 1:
             NetworkingStuff.Ddos()
         elif option == 9:
-            NetworkingStuff.Ddos().dos()
+            NetworkingStuff.Dos()
         elif option == 99:
             exit(1)
 

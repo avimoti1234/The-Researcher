@@ -26,9 +26,10 @@ researcher [option] [parameter]
 options:
 
 
--p --protocol                \tspecify protocol to use
--f --flags                   \tspecify flags in the packet header of the protocol you chose
--port                        \tspecify port number for the attack
-    1. -port/(nothing)       \tif -port set to nothing the port will be set to default
-    2. -port random          \tif -port set to random the attack will use random port to attack
+-protocol                                 \tspecify protocol to use
+-flag                                     \tspecify flags in the packet header of the protocol you chose
+    FIN, SYN, RST, PSH, ACK, URG, ECE, CWR\tpossible arguments for the -flag option
+-port                                     \tspecify port number for the attack
+    1. -port/(nothing)                    \tif -port set to nothing the port will be set to default
+    2. -port random                       \tif -port set to random the attack will use random port to attack
 """
