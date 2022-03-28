@@ -1,22 +1,11 @@
 from scapy.all import ICMP, ARP, IP, UDP, TCP, Ether, RandShort, RandIP, send
 from threading import Thread
 import socket
+import Menus
 
 
 def DisplayHelpMenu():
-    HelpMenu = \
-        """
-    researcher [option] [parameter]
-    options:
-    
-    
-    -p --protocol                \tspecify protocol to use
-    -f --flags                   \tspecify flags in the packet header of the protocol you chose
-    -port                        \tspecify port number for the attack
-        1. -port/(nothing)       \tif -port set to nothing the port will be set to default
-        2. -port random          \tif -port set to random the attack will use random port to attack
-    """
-    print(HelpMenu)
+    print(Menus.HelpMenu)
 
 
 class PortScanner:
@@ -69,7 +58,6 @@ class Ddos:
                 for i in range(len(self.members)):
                     self.members[i].send(Input.encode())
         self.Join = False
-        thrd.join()
 
     def AttackTarget(self):
         print("in attack function")
