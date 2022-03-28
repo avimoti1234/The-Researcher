@@ -86,5 +86,3 @@ class Ddos:
                     pass
             else:
                 pass
-
-
