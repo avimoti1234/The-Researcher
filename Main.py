@@ -3,7 +3,8 @@ if os.name != "posix" or os.getuid():
     print("[!]Your system does not meet the standard requirements for this tool to run.\n[*]Try to to run this on unix based system with sudo.")
     exit(-1)
 from sys import path
-path.append('enter/the/path/to/the/src/folder/here')
+#enter the src path in your pc
+path.append('enter/path/here')
 from src import AndroidControlTool, MlwareAndNetcat, NetworkingStuff, Menus
 
 class MainFunctions:

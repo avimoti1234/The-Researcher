@@ -61,8 +61,7 @@ class Ddos:
             elif Input == "resume join\n":
                 self.Join = True
             elif "-flag" in Input:
-                a = "nigger SYN"
-                print(a.find(" "))
+                pass
             elif Input == "-help\n":
                 print(Menus.HelpMenu)
             else:
