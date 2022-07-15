@@ -19,11 +19,12 @@ class NetCat:
         self.PortNumber = int(input("   [*]What port do you to listen on? "))
 
         self.sock.bind((self.IP, self.PortNumber))
-
+        print("   [*]Socket has been bound successfully")
         NumOfPeopleToJoin = int(input("   [*]How many people would you like to join? "))
 
         self.sock.listen(NumOfPeopleToJoin)
-         
+        print("   [*]Socket has been initiated, look for incoming connection...\n")
+        sock_handler, _ = self.sock.accept()
 
 
 
