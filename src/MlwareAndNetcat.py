@@ -20,11 +20,13 @@ class NetCat:
 
         self.sock.bind((self.IP, self.PortNumber))
         print("   [*]Socket has been bound successfully")
-        NumOfPeopleToJoin = int(input("   [*]How many people would you like to join? "))
 
-        self.sock.listen(NumOfPeopleToJoin)
-        print("   [*]Socket has been initiated, look for incoming connection...\n")
-        sock_handler, _ = self.sock.accept()
+        self.sock.listen(1)
+        print("   [*]Socket has been initiated, looking for incoming connection...\n")
+        sock_handler, niglet= self.sock.accept()
 
-
+        print(niglet)
+        sock_handler.close()
+        self.sock.close()
+        exit(1)
 
