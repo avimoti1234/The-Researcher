@@ -14,7 +14,7 @@ logo = """_________          _______    _______  _______  _______  _______  ____
 menu = """
 \n   1.ddos\t\t2.Android(adb)
    3.packet sniffing    4.port scanner
-   5.MITHM\t\t6.netcat
+   5.MITM \t\t6.netcat
    7.proxy server\t8.change MAC address
    9.dos\t\t10.virus integrated through github
 

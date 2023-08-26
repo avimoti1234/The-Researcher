@@ -3,10 +3,40 @@ from threading import Thread
 import socket
 import Menus
 
+#The below calss implements a port scanner
 class PortScanner:
     def __init__(self):
-        pass
+        self.Ip = "127.0.0.1"
+        self.RangeOfPorts = 1000
+        self.OSDetection = False
 
+        self.Ip = input("\n\n\n   [*]Port scanner has started\n   [*]Enter the destination ip(default is localhost): ")
+        self.RangeOfPorts = int(input("   [*]Enter the number of ports to be scanned(default is 1000): "))
+        if input("   [*]Would you like to activate os detection(y/n): ") == 'y':
+            self.OSDetection = True
+        else:
+            self.OSDetection = False
+        print("\n\n   [*]Data is being is processed...\n\n")
+        print(1)
+        self._ScanPorts()
+
+    def _ScanPorts(self):
+        print(1)
+        self.Scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        for num in range(1, self.RangeOfPorts):
+            ReturnCode = self.Scanner.connect_ex((self.Ip, num))
+            print(ReturnCode)
+            if ReturnCode == 0:
+                print(f"[*]   Port {num} is open")
+            elif ReturnCode == 100 or ReturnCode == 101:
+                print(f"[!]   Host is down\\unreachable")
+                #quits the loop
+                num = self.RangeOfPorts + 1
+
+        self.Scanner.close()
+
+
+#The below class implements a ddos attack
 class Ddos:
     def __init__(self):
         self.Join = True
@@ -80,7 +110,7 @@ class Ddos:
                 for char in range(6, len(Input)):
                     if (Flag == "SYN" or "URG" or "UDP" or "CWR" or "RST" or "FIN" or "ECE" or "PSH" or "ACK"):
                         flag += int(self.Flags.get(Flag))
-                        self.PacketBlueprint[TCP].flags = self.PacketBlueprint/TCP(flags=flag)
+                        self.PacketBlueprint[TCP].flags = self.PacketBlueprint / TCP(flags=flag)
                         Flag = ""
                     Flag += Input[char]
             elif Input == "-help":
