@@ -17,11 +17,9 @@ class PortScanner:
         else:
             self.OSDetection = False
         print("\n\n   [*]Data is being is processed...\n\n")
-        print(1)
         self._ScanPorts()
 
     def _ScanPorts(self):
-        print(1)
         self.Scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         for num in range(1, self.RangeOfPorts):
             ReturnCode = self.Scanner.connect_ex((self.Ip, num))
